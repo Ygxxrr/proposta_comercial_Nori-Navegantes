@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proposta Comercial — Ygor Matos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:    #090909;
+      --dark:     #111111;
+      --card:     #161616;
+      --gold:     #C9A84C;
+      --gold-dim: #8A6F2E;
+      --red:      #9B1C1C;
+      --red-bright: #C62828;
+      --white:    #F5F0E8;
+      --muted:    #7A7570;
+      --border:   rgba(201,168,76,0.18);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE TEXTURE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    /* ── WAVE PATTERN (Japanese seigaiha) ── */
+    .wave-bg {
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='40'%3E%3Cellipse cx='40' cy='40' rx='40' ry='30' fill='none' stroke='%23C9A84C' stroke-width='1'/%3E%3Cellipse cx='0' cy='40' rx='40' ry='30' fill='none' stroke='%23C9A84C' stroke-width='1'/%3E%3Cellipse cx='80' cy='40' rx='40' ry='30' fill='none' stroke='%23C9A84C' stroke-width='1'/%3E%3Cellipse cx='20' cy='10' rx='40' ry='30' fill='none' stroke='%23C9A84C' stroke-width='1'/%3E%3Cellipse cx='60' cy='10' rx='40' ry='30' fill='none' stroke='%23C9A84C' stroke-width='1'/%3E%3C/svg%3E");
+      background-size: 80px 40px;
+      pointer-events: none;
+    }
+
+    /* ── TYPOGRAPHY ── */
+    .display { font-family: 'Playfair Display', serif; }
+
+    h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.2; }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ── LAYOUT ── */
+    section { position: relative; z-index: 1; }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+      margin: 0;
+    }
+
+    /* ════════════════════════════════
+       HERO
+    ════════════════════════════════ */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 80px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero .wave-bg { opacity: 0.06; }
+
+    /* Ambient glow */
+    #hero::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -60%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ── YGOR MATOS LOGO ── */
+    .logo-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 7vw, 64px);
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* The "signature" O: a red pulsing circle replacing the A */
+    .logo-mark .logo-a {
+      position: relative;
+      display: inline-block;
+    }
+
+    .logo-mark .logo-a::before {
+      content: '';
+      position: absolute;
+      top: 52%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 58%;
+      height: 58%;
+      background: var(--red-bright);
+      border-radius: 50%;
+      z-index: -1;
+      animation: pulse-dot 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      50%       { transform: translate(-50%, -50%) scale(1.12); opacity: 0.85; }
+    }
+
+    .logo-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 64px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-title {
+      font-size: clamp(32px, 6vw, 58px);
+      font-weight: 700;
+      color: var(--white);
+      max-width: 720px;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-title em {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 56px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Two client badges */
+    .client-badges {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .badge {
+      border: 1px solid var(--border);
+      background: rgba(201,168,76,0.06);
+      border-radius: 4px;
+      padding: 10px 22px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+    }
+
+    .badge span {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* scroll cue */
+    .scroll-cue {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.35;
+      animation: bob 2s ease-in-out infinite;
+      z-index: 1;
+    }
+
+    .scroll-cue span {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .scroll-cue svg { width: 16px; }
+
+    @keyframes bob {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ════════════════════════════════
+       DIAGNOSIS
+    ════════════════════════════════ */
+    #diagnosis {
+      padding: 100px 0;
+      background: var(--dark);
+    }
+
+    .section-head {
+      margin-bottom: 56px;
+    }
+
+    .section-head .eyebrow { margin-bottom: 12px; }
+
+    .section-head h2 {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 700;
+      color: var(--white);
+      max-width: 600px;
+    }
+
+    .section-head h2 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+    /* Diagnosis cards grid */
+    .diag-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+
+    .diag-card {
+      background: var(--card);
+      padding: 32px 28px;
+      border-left: 3px solid transparent;
+      transition: border-color 0.3s;
+    }
+
+    .diag-card:hover { border-left-color: var(--gold); }
+
+    .diag-card.critical { border-left-color: var(--red); }
+
+    .diag-card .tag {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .diag-card .tag.warn  { color: var(--red-bright); }
+    .diag-card .tag.ok    { color: #4CAF50; }
+
+    .diag-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .diag-card p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ════════════════════════════════
+       STRATEGY OVERVIEW
+    ════════════════════════════════ */
+    #strategy {
+      padding: 100px 0;
+    }
+
+    /* Two restaurant columns */
+    .rest-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .rest-col {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .rest-col-head {
+      padding: 24px 28px;
+      background: rgba(201,168,76,0.07);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .rest-col-head .rest-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 6px;
+    }
+
+    .rest-col-head h3 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .rest-col-head p {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .rest-col-body {
+      padding: 24px 28px;
+    }
+
+    .camp-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .camp-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--white);
+      line-height: 1.5;
+    }
+
+    .camp-list li::before {
+      content: '';
+      flex-shrink: 0;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      margin-top: 7px;
+    }
+
+    .camp-list li strong {
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .platforms {
+      display: flex;
+      gap: 8px;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .plat-tag {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      color: var(--gold-dim);
+    }
+
+    /* ════════════════════════════════
+       SCOPE — what's included
+    ════════════════════════════════ */
+    #scope {
+      padding: 100px 0;
+      background: var(--dark);
+    }
+
+    .scope-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 48px;
+    }
+
+    @media (max-width: 900px) {
+      .scope-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .scope-item {
+      background: var(--card);
+      padding: 32px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scope-item::after {
+      content: attr(data-n);
+      position: absolute;
+      bottom: -10px;
+      right: 12px;
+      font-family: 'Playfair Display', serif;
+      font-size: 72px;
+      font-weight: 900;
+      color: rgba(201,168,76,0.06);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .scope-item .icon {
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+
+    .scope-item h4 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .scope-item p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ════════════════════════════════
+       INVESTMENT
+    ════════════════════════════════ */
+    #investment {
+      padding: 100px 0;
+      text-align: center;
+    }
+
+    .price-card {
+      max-width: 560px;
+      margin: 48px auto 0;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Gold top accent line */
+    .price-card::before {
+      content: '';
+      display: block;
+      height: 3px;
+      background: linear-gradient(90deg, var(--red), var(--gold), var(--red));
+    }
+
+    .price-card-body {
+      padding: 52px 40px;
+      background: var(--card);
+    }
+
+    .price-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 12px;
+    }
+
+    .price-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 36px;
+    }
+
+    .price-value {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(52px, 10vw, 80px);
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .price-value sup {
+      font-size: 28px;
+      vertical-align: super;
+      font-weight: 600;
+    }
+
+    .price-period {
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      margin-bottom: 36px;
+    }
+
+    .price-includes {
+      list-style: none;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 40px;
+    }
+
+    .price-includes li {
+      font-size: 14px;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .price-includes li::before {
+      content: '✦';
+      color: var(--gold);
+      font-size: 10px;
+      flex-shrink: 0;
+    }
+
+    .market-note {
+      background: rgba(155, 28, 28, 0.15);
+      border: 1px solid rgba(198, 40, 40, 0.3);
+      border-radius: 4px;
+      padding: 14px 18px;
+      font-size: 13px;
+      color: #E57373;
+      text-align: left;
+      line-height: 1.5;
+    }
+
+    .market-note strong { color: #EF9A9A; }
+
+    /* Nota de verba separada */
+    .invest-note {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      background: rgba(201,168,76,0.08);
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 4px;
+      padding: 16px 18px;
+      font-size: 13px;
+      color: var(--white);
+      text-align: left;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .invest-note strong {
+      color: var(--gold);
+      display: block;
+      margin-bottom: 2px;
+      font-size: 13px;
+    }
+
+    .invest-note-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+    /* Animação de contagem do preço */
+    .price-value {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(52px, 10vw, 80px);
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 6px;
+      transition: opacity 0.3s;
+    }
+
+    .price-value.counting { color: var(--gold-dim); }
+
+    @keyframes gold-flash {
+      0%   { text-shadow: 0 0 0px rgba(201,168,76,0); }
+      50%  { text-shadow: 0 0 30px rgba(201,168,76,0.6), 0 0 60px rgba(201,168,76,0.3); }
+      100% { text-shadow: 0 0 0px rgba(201,168,76,0); }
+    }
+
+    .price-value.done { animation: gold-flash 1s ease-out forwards; }
+
+    /* ════════════════════════════════
+       WHY YGOR MATOS
+    ════════════════════════════════ */
+    #why {
+      padding: 100px 0;
+      background: var(--dark);
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    @media (max-width: 860px) {
+      .why-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .why-card {
+      padding: 32px 28px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+
+    .why-card:hover { background: rgba(201,168,76,0.04); }
+
+    .why-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 40px;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .why-card h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .why-card p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ════════════════════════════════
+       TIMELINE
+    ════════════════════════════════ */
+    #timeline {
+      padding: 100px 0;
+    }
+
+    .tl-items {
+      margin-top: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+    }
+
+    .tl-items::before {
+      content: '';
+      position: absolute;
+      left: 23px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--gold-dim), transparent);
+    }
+
+    .tl-item {
+      display: flex;
+      gap: 28px;
+      padding-bottom: 40px;
+      position: relative;
+    }
+
+    .tl-dot {
+      flex-shrink: 0;
+      width: 47px;
+      height: 47px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 2px solid var(--gold-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--gold);
+      position: relative;
+      z-index: 1;
+    }
+
+    .tl-content { padding-top: 10px; }
+
+    .tl-week {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 4px;
+    }
+
+    .tl-content h4 {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .tl-content p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ════════════════════════════════
+       CTA / FOOTER
+    ════════════════════════════════ */
+    #cta {
+      padding: 120px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #cta::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(201,168,76,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    #cta h2 {
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 700;
+      color: var(--white);
+      max-width: 600px;
+      margin: 0 auto 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    #cta h2 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+    #cta p {
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 48px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-sig {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .cta-sig .sig-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+    }
+
+    .cta-sig .sig-role {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 24px;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+
+    footer p {
+      font-size: 12px;
+      color: rgba(122,117,112,0.5);
+      letter-spacing: 0.06em;
+    }
+
+    /* ════════════════════════════════
+       SCROLL ANIMATIONS
+    ════════════════════════════════ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .diag-grid,
+      .rest-cols,
+      .scope-grid,
+      .why-grid { grid-template-columns: 1fr; }
+
+      .price-card-body { padding: 32px 20px; }
+
+      .tl-items::before { left: 19px; }
+
+      .container { padding: 0 16px; }
+
+      #hero { padding: 60px 16px 80px; }
+
+      .logo-sub { margin-bottom: 40px; }
+
+      .hero-sub { font-size: 15px; }
+
+      .client-badges { flex-direction: column; align-items: center; }
+
+      .badge { width: 100%; max-width: 280px; text-align: center; }
+
+      #diagnosis,
+      #strategy,
+      #scope,
+      #investment,
+      #why,
+      #timeline,
+      #cta { padding: 64px 0; }
+
+      .section-head { margin-bottom: 36px; }
+
+      .rest-col-head { padding: 20px; }
+      .rest-col-body { padding: 20px; }
+
+      .scope-grid { grid-template-columns: 1fr 1fr; }
+
+      .price-value { font-size: clamp(44px, 16vw, 72px); }
+
+      .invest-note { flex-direction: column; gap: 8px; }
+
+      .why-grid { gap: 12px; }
+
+      .tl-dot { width: 40px; height: 40px; font-size: 14px; }
+
+      #cta { padding: 80px 0; }
+
+      .cta-sig .sig-name { font-size: 28px; }
+    }
+
+    @media (max-width: 400px) {
+      .scope-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      @keyframes pulse-dot { from {} to {} }
+      @keyframes bob { from {} to {} }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<section id="hero">
+  <div class="wave-bg"></div>
+
+  <div class="logo-mark display">
+    Y<span class="logo-a">o</span>gr Mat<span class="logo-a">o</span>s
+  </div>
+  <div class="logo-sub">Marketing Digital &amp; Tráfego Pago</div>
+
+  <p class="hero-label">Proposta Comercial · Agosto 2026</p>
+
+  <h1 class="hero-title">
+    Dois lançamentos.<br>Uma estratégia <em>irrecusável.</em>
+  </h1>
+
+  <p class="hero-sub">
+    Uma proposta construída depois de analisar cada detalhe dos seus projetos — antes mesmo de qualquer contrato.
+  </p>
+
+  <div class="client-badges">
+    <div class="badge">
+      🍣 Nori Sushi Lounge
+      <span>Inauguração · Setembro 2026</span>
+    </div>
+    <div class="badge">
+      🍖 Navegantes
+      <span>Relançamento · Porto Seguro, BA</span>
+    </div>
+  </div>
+
+  <div class="scroll-cue">
+    <span>Ver proposta</span>
+    <svg viewBox="0 0 16 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M8 0v20M1 13l7 7 7-7"/>
+    </svg>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════ DIAGNOSIS ══════════════════ -->
+<section id="diagnosis">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Diagnóstico Inicial</p>
+      <h2>O que eu encontrei <em>antes</em> de ser contratado</h2>
+    </div>
+
+    <div class="diag-grid reveal">
+
+      <div class="diag-card critical">
+        <p class="tag warn">⚠ Crítico — Navegantes</p>
+        <h4>Link de WhatsApp quebrado</h4>
+        <p>O link na bio do perfil está inativo. Qualquer pessoa que tenta entrar em contato pelo Instagram cai no vazio — clientes sendo perdidos todos os dias.</p>
+      </div>
+
+      <div class="diag-card critical">
+        <p class="tag warn">⚠ Crítico — Navegantes</p>
+        <h4>Fotos erradas no Google</h4>
+        <p>Quando alguém pesquisa o restaurante no Google, vê a fachada e o nome de outro estabelecimento anterior. A primeira impressão online está comprometida.</p>
+      </div>
+
+      <div class="diag-card">
+        <p class="tag warn">⚠ Oportunidade — Navegantes</p>
+        <h4>Receita noturna inexplorada</h4>
+        <p>O restaurante funciona apenas 4 horas por dia. A expansão para o período noturno com espetinhos e porções é uma nova fonte de receita que precisa ser comunicada — e o tráfego pago é o caminho mais rápido para isso.</p>
+      </div>
+
+      <div class="diag-card">
+        <p class="tag warn">⚠ Atenção — Nori</p>
+        <h4>8.471 seguidores de outro nicho</h4>
+        <p>A base do Instagram veio de uma hamburgueria. Esse público precisa ser reativado e reposicionado com a nova identidade antes da abertura.</p>
+      </div>
+
+      <div class="diag-card">
+        <p class="tag ok">✔ Potencial — Nori</p>
+        <h4>Branding de alto nível pronto</h4>
+        <p>Identidade visual sofisticada, consistente em todos os pontos de contato — jogo americano, uniforme, fachada, embalagem. Isso vira criativo poderoso.</p>
+      </div>
+
+      <div class="diag-card">
+        <p class="tag ok">✔ Potencial — Ambos</p>
+        <h4>Dois lançamentos simultâneos</h4>
+        <p>Lançar dois restaurantes ao mesmo tempo com estratégias coordenadas gera mais eficiência de verba e aumenta o reconhecimento de marca na região.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════ STRATEGY ══════════════════ -->
+<section id="strategy">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Estratégia de Campanhas</p>
+      <h2>O que vamos <em>rodar</em> para cada restaurante</h2>
+    </div>
+
+    <div class="rest-cols reveal">
+
+      <!-- NORI -->
+      <div class="rest-col">
+        <div class="rest-col-head">
+          <p class="rest-label">Restaurante 01</p>
+          <h3>Nori Sushi Lounge</h3>
+          <p>Inauguração · Setembro 2026</p>
+        </div>
+        <div class="rest-col-body">
+          <ul class="camp-list">
+            <li><strong>Campanha de Pré-lançamento</strong> — Aquecimento da audiência antes da abertura. Conteúdo de bastidores, contagem regressiva e geração de expectativa.</li>
+            <li><strong>Evento de Inauguração</strong> — Menu degustação exclusivo. Anúncios para atrair presença e criar buzz na abertura oficial.</li>
+            <li><strong>Rodízio (Seg–Qui)</strong> — Campanha de conversão focada em frequência semanal e ticket médio.</li>
+            <li><strong>À la carte (Sex–Dom)</strong> — Posicionamento premium para o fim de semana, focando em experiência e sofisticação.</li>
+          </ul>
+          <div class="platforms">
+            <span class="plat-tag">Meta Ads</span>
+            <span class="plat-tag">Google Ads</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- NAVEGANTES -->
+      <div class="rest-col">
+        <div class="rest-col-head">
+          <p class="rest-label">Restaurante 02</p>
+          <h3>Navegantes</h3>
+          <p>Relançamento · Ex-Sagres</p>
+        </div>
+        <div class="rest-col-body">
+          <ul class="camp-list">
+            <li><strong>Campanha de Rebranding</strong> — Apresentar o Navegantes para quem conhecia o Sagres. Nova identidade, nova energia.</li>
+            <li><strong>Marmita &amp; Almoço (11h–15h)</strong> — Campanha de conversão para o público local, focando em praticidade e sabor caseiro.</li>
+            <li><strong>Projeto Noturno</strong> — Espetinhos e porções à noite. Novo posicionamento que não existia antes, com campanha própria para atrair esse público.</li>
+          </ul>
+          <div class="platforms">
+            <span class="plat-tag">Meta Ads</span>
+            <span class="plat-tag">Google Ads</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════ SCOPE ══════════════════ -->
+<section id="scope">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Escopo Completo</p>
+      <h2>Tudo que está <em>incluso</em> no pacote</h2>
+    </div>
+
+    <div class="scope-grid reveal">
+
+      <div class="scope-item" data-n="1">
+        <div class="icon">⚙️</div>
+        <h4>Configuração de Contas</h4>
+        <p>Criação e configuração completa das contas de Meta Ads e Google Ads dos dois restaurantes. Pixel, conversões e rastreamento do zero.</p>
+      </div>
+
+      <div class="scope-item" data-n="2">
+        <div class="icon">📍</div>
+        <h4>Google Meu Negócio</h4>
+        <p>Recuperação do acesso e atualização completa do perfil do Navegantes no Google — novas fotos, horários corretos, informações de contato.</p>
+      </div>
+
+      <div class="scope-item" data-n="3">
+        <div class="icon">🎯</div>
+        <h4>Gestão de Tráfego Pago</h4>
+        <p>Criação, gerenciamento e otimização contínua das campanhas no Meta Ads e Google Ads para os dois restaurantes.</p>
+      </div>
+
+      <div class="scope-item" data-n="4">
+        <div class="icon">🖼️</div>
+        <h4>Produção de Criativos</h4>
+        <p>Edição de imagens reais + geração de imagens com Inteligência Artificial, mantendo a identidade visual de cada restaurante.</p>
+      </div>
+
+      <div class="scope-item" data-n="5">
+        <div class="icon">📱</div>
+        <h4>Gestão de Instagram</h4>
+        <p>Curadoria e postagem de conteúdo nos perfis dos dois restaurantes. Reposicionamento do Nori e rebranding do Navegantes.</p>
+      </div>
+
+      <div class="scope-item" data-n="6">
+        <div class="icon">🌐</div>
+        <h4>Criação de Site ou Landing Page</h4>
+        <p>Desenvolvimento de site ou landing page para os restaurantes quando necessário — incluído no pacote, sem custo adicional.</p>
+      </div>
+
+      <div class="scope-item" data-n="7">
+        <div class="icon">📊</div>
+        <h4>Relatórios e Estratégia</h4>
+        <p>Acompanhamento de resultados, relatórios periódicos e ajuste contínuo da estratégia com base em dados reais dos dois projetos.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════ INVESTMENT ══════════════════ -->
+<section id="investment">
+  <div class="container">
+    <div class="section-head reveal" style="text-align:center; margin-left:auto; margin-right:auto; max-width:600px;">
+      <p class="eyebrow">Investimento</p>
+      <h2>Um valor que <em>não existe</em> no mercado</h2>
+    </div>
+
+    <div class="price-card reveal">
+      <div class="price-card-body">
+        <p class="price-label">Pacote Lançamento Duplo</p>
+        <p class="price-name">Nori Sushi Lounge + Navegantes</p>
+
+        <div class="price-value" id="priceVal"><sup>R$</sup><span id="priceNum">0</span></div>
+        <p class="price-period">por mês · dois restaurantes · gestão completa</p>
+
+        <ul class="price-includes">
+          <li>2 contas de Meta Ads gerenciadas</li>
+          <li>2 contas de Google Ads criadas e gerenciadas</li>
+          <li>5 campanhas ativas entre os dois projetos</li>
+          <li>Produção de criativos com IA</li>
+          <li>Gestão dos perfis no Instagram</li>
+          <li>Recuperação e atualização do Google Meu Negócio</li>
+          <li>Criação de site ou landing page inclusa</li>
+          <li>Relatórios e otimização contínua</li>
+        </ul>
+
+        <div class="invest-note">
+          <div class="invest-note-icon">ℹ️</div>
+          <div>
+            <strong>Honorários de gestão — Ygor Matos</strong><br>
+            O valor de R$ 4.000/mês é referente exclusivamente à gestão, estratégia e produção de conteúdo — entregue por um profissional com passagem pela <strong style="color:var(--gold)">V4 Company</strong>, maior assessoria de marketing digital da América Latina. O investimento em mídia paga (verba para Meta Ads e Google Ads) é definido separadamente, de acordo com os objetivos de cada campanha.
+          </div>
+        </div>
+
+        <div class="market-note" style="margin-top:12px;">
+          💡 <strong>Contexto de mercado:</strong> esse escopo é comercializado entre R$ 7.000 e R$ 9.000/mês por agências especializadas. Este valor é uma condição de lançamento — revisado após os primeiros 3 meses de parceria.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════ WHY YGOR MATOS ══════════════════ -->
+<section id="why">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Por que Ygor Matos</p>
+      <h2>O que você está <em>contratando</em> de verdade</h2>
+    </div>
+
+    <div class="why-grid reveal">
+
+      <div class="why-card">
+        <div class="why-num">5+</div>
+        <h4>Anos no Marketing Digital</h4>
+        <p>Atuando desde 2021 com tráfego pago, estratégia e gestão de marca — incluindo passagem pela <strong style="color:var(--gold)">V4 Company</strong>, maior assessoria de marketing digital da América Latina.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-num">R$500k+</div>
+        <h4>Em Vendas Geradas</h4>
+        <p>Mais de meio milhão de reais comprovados em vendas geradas através de tráfego pago — entre e-commerces próprios e clientes gerenciados.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-num">25+</div>
+        <h4>Estruturações Completas</h4>
+        <p>Mais de 25 diagnósticos e estruturações completas de marketing digital realizadas para negócios de diferentes segmentos.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-num">14+</div>
+        <h4>Sites Entregues</h4>
+        <p>Mais de 14 sites e landing pages desenvolvidos e entregues — prova de que estratégia e execução andam juntas.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-num">4+</div>
+        <h4>E-commerces Gerenciados</h4>
+        <p>Experiência como gestor e proprietário de e-commerces — visão completa do funil, do anúncio à conversão final.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-num">6</div>
+        <h4>Clientes Ativos Hoje</h4>
+        <p>Carteira ativa com 6 clientes em gestão simultânea — operação rodando, resultados acontecendo agora.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════ TIMELINE ══════════════════ -->
+<section id="timeline">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Cronograma</p>
+      <h2>Como as coisas <em>acontecem</em></h2>
+    </div>
+
+    <div class="tl-items reveal">
+
+      <div class="tl-item">
+        <div class="tl-dot">1</div>
+        <div class="tl-content">
+          <p class="tl-week">Semana 1</p>
+          <h4>Onboarding &amp; Configuração</h4>
+          <p>Acesso às contas, criação do pixel, configuração do Meta Ads e Google Ads, recuperação do Google Meu Negócio, correção do WhatsApp e atualização dos perfis.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot">2</div>
+        <div class="tl-content">
+          <p class="tl-week">Semana 2</p>
+          <h4>Produção de Criativos e Pré-lançamento</h4>
+          <p>Geração e edição de imagens para ambos os restaurantes. Início das campanhas de aquecimento do Nori e rebranding do Navegantes.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot">3</div>
+        <div class="tl-content">
+          <p class="tl-week">Semana 3–4</p>
+          <h4>Lançamento das Campanhas Principais</h4>
+          <p>Ativação das campanhas de inauguração do Nori e do projeto noturno do Navegantes. Primeiros dados, primeiros ajustes.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot">4</div>
+        <div class="tl-content">
+          <p class="tl-week">Mês 2 em diante</p>
+          <h4>Otimização Contínua</h4>
+          <p>Escalonamento das campanhas que performam, relatórios periódicos e alinhamento estratégico constante para maximizar o retorno.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════ CTA ══════════════════ -->
+<section id="cta">
+  <div class="container">
+    <h2 class="reveal">Pronto para <em>lotar</em> os dois restaurantes?</h2>
+    <p class="reveal">A estratégia está pronta. Os projetos estão mapeados. Só falta o sinal verde.</p>
+
+    <div class="cta-sig reveal">
+      <div class="sig-name">Ygor Matos</div>
+      <div class="sig-role">Marketing Digital &amp; Tráfego Pago · Desde 2021</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Proposta elaborada em Agosto de 2026 · Ygor Matos · Confidencial</p>
+</footer>
+
+<!-- ══════════════════ JS ══════════════════ -->
+<script>
+  // ── Scroll reveal ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        const children = e.target.querySelectorAll(':scope > *');
+        children.forEach((c, i) => {
+          c.style.transitionDelay = `${i * 80}ms`;
+        });
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ── Animação de contagem do preço ──
+  const priceEl   = document.getElementById('priceVal');
+  const priceNum  = document.getElementById('priceNum');
+  const target    = 4000;
+  let animated    = false;
+
+  function formatNum(n) {
+    return n.toLocaleString('pt-BR');
+  }
+
+  function animatePrice() {
+    if (animated) return;
+    animated = true;
+
+    priceEl.classList.add('counting');
+
+    const duration = 900;
+    const start    = performance.now();
+
+    function step(now) {
+      const elapsed  = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      // ease-out-expo
+      const eased    = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      const current  = Math.round(eased * target);
+
+      priceNum.textContent = formatNum(current);
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        priceNum.textContent = formatNum(target);
+        priceEl.classList.remove('counting');
+        priceEl.classList.add('done');
+        setTimeout(() => priceEl.classList.remove('done'), 1200);
+      }
+    }
+
+    requestAnimationFrame(step);
+  }
+
+  // Observa quando o card de preço entra na tela
+  const priceObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) animatePrice();
+    });
+  }, { threshold: 0.4 });
+
+  if (priceEl) priceObserver.observe(priceEl);
+</script>
+
+</body>
+</html>
